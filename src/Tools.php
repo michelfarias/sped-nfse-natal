@@ -159,12 +159,18 @@ class Tools extends BaseTools
         }
         $content = '';
         foreach ($arps as $rps) {
-            $xml = $this->putPrestadorInRps($rps);
+            //$xml = $this->putPrestadorInRps($rps);
+
+            $xml = '<Rps><InfRps Id="rps:14494652"><IdentificacaoRps><Numero>14494</Numero><Serie>652</Serie><Tipo>1</Tipo></IdentificacaoRps><DataEmissao>2012-07-11T00:00:00</DataEmissao><NaturezaOperacao>1</NaturezaOperacao><OptanteSimplesNacional>2</OptanteSimplesNacional><IncentivadorCultural>2</IncentivadorCultural><Status>1</Status><Servico><Valores><ValorServicos>4</ValorServicos><ValorPis>0</ValorPis><ValorCofins>0</ValorCofins><ValorInss>0</ValorInss><ValorIr>0</ValorIr><ValorCsll>0</ValorCsll><IssRetido>2</IssRetido><ValorIss>0.08</ValorIss><ValorIssRetido>0</ValorIssRetido><OutrasRetencoes>0</OutrasRetencoes><BaseCalculo>4</BaseCalculo><Aliquota>0.02</Aliquota><ValorLiquidoNfse>4</ValorLiquidoNfse><DescontoIncondicionado>0</DescontoIncondicionado><DescontoCondicionado>0</DescontoCondicionado></Valores><ItemListaServico>10.05</ItemListaServico><CodigoCnae>6821801</CodigoCnae><Discriminacao>ASD</Discriminacao><CodigoMunicipio>3509502</CodigoMunicipio></Servico><Prestador><Cnpj>09267632000190</Cnpj><InscricaoMunicipal>1358286</InscricaoMunicipal></Prestador><Tomador><IdentificacaoTomador><CpfCnpj><Cpf>05135872922</Cpf></CpfCnpj></IdentificacaoTomador><RazaoSocial>Tomador CAMPINAS</RazaoSocial><Endereco><Endereco>endereco</Endereco><Numero>1</Numero><Complemento>complemento</Complemento><Bairro>bairro</Bairro><CodigoMunicipio>3509502</CodigoMunicipio><Uf>SP</Uf><Cep>89000000</Cep></Endereco><Contato><Telefone>04734515555</Telefone><Email>teste@123.com</Email></Contato></Tomador></InfRps></Rps>';
+            //$xml = str_replace(['\n', '\r'], '', $xml);
             $xmlsigned = $this->sign($xml, 'InfRps', 'Id');
+            //header("Content-type: text/xml");
+            //echo $xmlsigned;
+            //exit;
             $content .= $xmlsigned;
         }
         $contentmsg = "<EnviarLoteRpsEnvio xmlns=\"http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd\">"
-            . "<LoteRps Id=\"$lote\">"
+            . "<LoteRps Id=\"lote:$lote\">"
             . "<NumeroLote>$lote</NumeroLote>"
             . "<Cnpj>" . $this->config->cnpj . "</Cnpj>"
             . "<InscricaoMunicipal>" . $this->config->im . "</InscricaoMunicipal>"
@@ -174,8 +180,10 @@ class Tools extends BaseTools
             . "</ListaRps>"
             . "</LoteRps>"
             . "</EnviarLoteRpsEnvio>";
-
         $content = $this->sign($contentmsg, 'LoteRps', 'Id');
+        //header("Content-type: text/xml");
+        //echo $content;
+        //exit;
         Validator::isValid($content, $this->xsdpath);
         return $this->send($content, $operation);
     }

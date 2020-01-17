@@ -3,7 +3,7 @@
         "municipio": "Natal",
         "uf": "RN",
         "homologacao": "https://wsnfsev1homologacao.natal.rn.gov.br:8443/axis2/services/NfseWSServiceV1",
-        "producao": "https://wsnfsev1.natal.rn.gov.br:8443/axis2/services/NfseWSServiceV1",
+        "producao": "https://wsnfsev1.natal.rn.gov.br:8444/axis2/services/NfseWSServiceV1",
         "version": "1",
         "msgns": "https://wsnfsev1homologacao.natal.rn.gov.br:8443/axis2/services",
         "soapns": "https://wsnfsev1homologacao.natal.rn.gov.br:8443"

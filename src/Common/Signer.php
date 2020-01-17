@@ -25,7 +25,7 @@ use NFePHP\Common\Validator;
 
 class Signer
 {
-    const CANONICAL = [true,false,null,null];
+    const CANONICAL = [true,true,null,null];
     
     /**
      * Make Signature tag
@@ -104,21 +104,16 @@ class Signer
         $canonical = self::CANONICAL
     ) {
         $nsDSIG = 'http://www.w3.org/2000/09/xmldsig#';
-        $nsCannonMethod = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315';
+        $nsCannonMethod = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments';
         $nsSignatureMethod = 'http://www.w3.org/2000/09/xmldsig#rsa-sha1';
         $nsDigestMethod = 'http://www.w3.org/2000/09/xmldsig#sha1';
         $digestAlgorithm = 'sha1';
-        if ($algorithm == OPENSSL_ALGO_SHA256) {
-            $digestAlgorithm = 'sha256';
-            $nsSignatureMethod = 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256';
-            $nsDigestMethod = 'http://www.w3.org/2001/04/xmlenc#sha256';
-        }
         $nsTransformMethod1 ='http://www.w3.org/2000/09/xmldsig#enveloped-signature';
-        $nsTransformMethod2 = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315';
+        //$nsTransformMethod2 = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315';
         $idSigned = trim($node->getAttribute($mark));
         $digestValue = self::makeDigest($node, $digestAlgorithm, $canonical);
         $signatureNode = $dom->createElementNS($nsDSIG, 'Signature');
-        $signatureNode->setAttribute('Id', 'Ass_'.$idSigned);
+        //$signatureNode->setAttribute('Id', 'Ass_'.$idSigned);
         
         $root->appendChild($signatureNode);
         $signedInfoNode = $dom->createElement('SignedInfo');
@@ -140,9 +135,9 @@ class Signer
         $transfNode1 = $dom->createElement('Transform');
         $transformsNode->appendChild($transfNode1);
         $transfNode1->setAttribute('Algorithm', $nsTransformMethod1);
-        $transfNode2 = $dom->createElement('Transform');
-        $transformsNode->appendChild($transfNode2);
-        $transfNode2->setAttribute('Algorithm', $nsTransformMethod2);
+        //$transfNode2 = $dom->createElement('Transform');
+        //$transformsNode->appendChild($transfNode2);
+        //$transfNode2->setAttribute('Algorithm', $nsTransformMethod2);
         $digestMethodNode = $dom->createElement('DigestMethod');
         $referenceNode->appendChild($digestMethodNode);
         $digestMethodNode->setAttribute('Algorithm', $nsDigestMethod);
