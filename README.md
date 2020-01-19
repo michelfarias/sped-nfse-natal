@@ -2,7 +2,7 @@
 
 Api para comunicação com webservices do Provedor NFSe Natal
 
-# EM DESENVOLVIMENTO NÃO USO ... NÃO FUNCIONAL !!!
+# EM DESENVOLVIMENTO NÃO USE. NÃO FUNCIONAL !!!
 
 ## Esta API esta sendo testada para Natal - RN
 
