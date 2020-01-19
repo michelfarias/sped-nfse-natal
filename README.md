@@ -1,7 +1,5 @@
 # sped-nfse-natal
 
-[![Join the chat at https://gitter.im/nfephp-org/sped-nfse-natal](https://badges.gitter.im/nfephp-org/sped-nfse-natal.svg)](https://gitter.im/nfephp-org/sped-nfse-natal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 Api para comunicação com webservices do Provedor NFSe Natal
 
 ## Esta API esta sendo testada para Natal - RN
