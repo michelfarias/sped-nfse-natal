@@ -2,6 +2,8 @@
 
 Api para comunicação com webservices do Provedor NFSe Natal
 
+# EM DESENVOLVIMENTO NÃO USO ... NÃO FUNCIONAL !!!
+
 ## Esta API esta sendo testada para Natal - RN
 
 *Utilize o [forum NFePHP](https://groups.google.com/forum/#!forum/nfephp) iniciar discussões especificas sobre o desenvolvimento deste pacote.*
