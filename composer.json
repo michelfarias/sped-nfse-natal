@@ -37,12 +37,12 @@
     },
     "autoload": {
         "psr-4": {
-          "NFePHP\\Natal\\": "src/"
+          "NFePHP\\NFSeNatal\\": "src/"
         } 
     },
     "autoload-dev": {
         "psr-4": {
-            "NFePHP\\Natal\\Tests\\": "tests/"
+            "NFePHP\\NFSeNatal\\Tests\\": "tests/"
         }
     },
     "scripts": {

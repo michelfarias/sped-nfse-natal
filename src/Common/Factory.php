@@ -1,18 +1,18 @@
 <?php
 
-namespace NFePHP\Natal\Common;
+namespace NFePHP\NFSeNatal\Common;
 
 /**
  * Class for RPS XML convertion
  *
  * @category  NFePHP
- * @package   NFePHP\Natal
- * @copyright NFePHP Copyright (c) 2008-2018
+ * @package   NFePHP\NFSeNatal
+ * @copyright NFePHP Copyright (c) 2020
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
  * @author    Roberto L. Machado <linux.rlm at gmail dot com>
- * @link      http://github.com/nfephp-org/sped-nfse-nacional for the canonical source repository
+ * @link      http://github.com/nfephp-org/sped-nfse-natal for the canonical source repository
  */
 
 use DOMNode;
@@ -33,6 +33,10 @@ class Factory
      * @var DOMNode
      */
     protected $rps;
+    /**
+     * @var \stdClass
+     */
+    protected $config;
 
     /**
      * Constructor
@@ -46,6 +50,15 @@ class Factory
         $this->dom->preserveWhiteSpace = false;
         $this->dom->formatOutput = false;
         $this->rps = $this->dom->createElement('Rps');
+    }
+    
+    /**
+     * Adicona dos dados de configuração
+     * @param stdClass $config
+     */
+    public function addConfig(\stdClass $config)
+    {
+        $this->config = $config;
     }
 
     /**
@@ -278,8 +291,8 @@ class Factory
         $this->dom->addChild(
             $node,
             "CodigoCnae",
-            $serv->codigocnae,
-            true
+            isset($serv->codigocnae) ? $serv->codigocnae : null,
+            false
         );
         $this->dom->addChild(
             $node,
@@ -438,27 +451,35 @@ class Factory
     }
 
     /**
-     * Includes Intermediario TAG in parent NODE
-     * @param DOMNode $parent
+     * Adiciona o Prestador com base nos daddos do config
+     * @param \DOMElement $parent
+     * @return void
      */
     protected function addPrestador(&$parent)
     {
-        if (!isset($this->std->prestador)) {
+        if (!isset($this->config)) {
             return;
         }
-        $int = $this->std->prestador;
         $node = $this->dom->createElement('Prestador');
+        $cpfcnpj = $this->dom->createElement('CpfCnpj');
         $this->dom->addChild(
-            $node,
+            $cpfcnpj,
             "Cnpj",
-            $int->cnpj,
-            true
+            !empty($this->config->cnpj) ? $this->config->cnpj : null,
+            false
         );
+        $this->dom->addChild(
+            $cpfcnpj,
+            "Cpf",
+            !empty($this->config->cpf) ? $this->config->cpf : null,
+            false
+        );
+        $node->appendChild($cpfcnpj);
         $this->dom->addChild(
             $node,
             "InscricaoMunicipal",
-            $int->inscricaomunicipal,
-            false
+            $this->config->im,
+            true
         );
         $parent->appendChild($node);
     }

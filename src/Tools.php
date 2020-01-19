@@ -1,23 +1,23 @@
 <?php
 
-namespace NFePHP\Natal;
+namespace NFePHP\NFSeNatal;
 
 /**
  * Class for comunications with NFSe webserver in Nacional Standard
  *
  * @category  NFePHP
- * @package   NFePHP\Natal
- * @copyright NFePHP Copyright (c) 2008-2020
+ * @package   NFePHP\NFSeNatal
+ * @copyright NFePHP Copyright (c) 2020
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
  * @author    Cleiton Perin <cperin20 at gmail dot com>
- * @link      http://github.com/nfephp-org/sped-nfse-nacional for the canonical source repository
+ * @link      http://github.com/nfephp-org/sped-nfse-natal for the canonical source repository
  */
 
 use NFePHP\Common\Certificate;
 use NFePHP\Common\Validator;
-use NFePHP\Natal\Common\Tools as BaseTools;
+use NFePHP\NFSeNatal\Common\Tools as BaseTools;
 
 class Tools extends BaseTools
 {
@@ -60,7 +60,7 @@ class Tools extends BaseTools
         $content = "<CancelarNfseEnvio>"
             . $signed
             . "</CancelarNfseEnvio>";
-        Validator::isValid($content, $this->xsdpath);
+        //Validator::isValid($content, $this->xsdpath);
         return $this->send($content, $operation);
     }
 
@@ -79,7 +79,7 @@ class Tools extends BaseTools
             . $this->prestador
             . "<Protocolo>$protocolo</Protocolo>"
             . "</ConsultarLoteRpsEnvio>";
-        Validator::isValid($content, $this->xsdpath);
+        //Validator::isValid($content, $this->xsdpath);
         return $this->send($content, $operation);
     }
 
@@ -117,7 +117,7 @@ class Tools extends BaseTools
             $content .= "</Tomador>";
         }
         $content .= "</ConsultarNfseEnvio>";
-        Validator::isValid($content, $this->xsdpath);
+        //Validator::isValid($content, $this->xsdpath);
         return $this->send($content, $operation);
     }
 
@@ -184,7 +184,7 @@ class Tools extends BaseTools
         //header("Content-type: text/xml");
         //echo $content;
         //exit;
-        Validator::isValid($content, $this->xsdpath);
+        //Validator::isValid($content, $this->xsdpath);
         return $this->send($content, $operation);
     }
 

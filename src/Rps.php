@@ -1,22 +1,22 @@
 <?php
 
-namespace NFePHP\Natal;
+namespace NFePHP\NFSeNatal;
 
 /**
  * Class for RPS construction and validation of data
  *
  * @category  NFePHP
- * @package   NFePHP\Natal
+ * @package   NFePHP\NFSeNatal
  * @copyright NFePHP Copyright (c) 2008-2018
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
  * @author    Roberto L. Machado <linux.rlm at gmail dot com>
- * @link      http://github.com/nfephp-org/sped-nfse-nacional for the canonical source repository
+ * @link      http://github.com/nfephp-org/sped-nfse-natal for the canonical source repository
  */
 
 use JsonSchema\Validator as JsonValid;
-use NFePHP\Natal\Common\Factory;
+use NFePHP\NFSeNatal\Common\Factory;
 use stdClass;
 
 class Rps implements RpsInterface
@@ -33,7 +33,12 @@ class Rps implements RpsInterface
      * @var string
      */
     protected $jsonschema;
-    
+    /**
+     * @var \stdClass
+     */
+    protected $config;
+
+
     /**
      * Constructor
      * @param stdClass $rps
@@ -44,12 +49,24 @@ class Rps implements RpsInterface
     }
     
     /**
+     * Add config
+     * @param type $config
+     */
+    public function config(\stdClass $config)
+    {
+        $this->config = $config;
+    }
+    
+    /**
      * {@inheritdoc}
      */
     public function render(stdClass $rps = null)
     {
         $this->init($rps);
         $fac = new Factory($this->std);
+        if (!empty($this->config)) {
+            $fac->addConfig($this->config);
+        }
         return $fac->render();
     }
     

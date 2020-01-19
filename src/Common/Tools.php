@@ -1,25 +1,25 @@
 <?php
 
-namespace NFePHP\Natal\Common;
+namespace NFePHP\NFSeNatal\Common;
 
 /**
  * Auxiar Tools Class for comunications with NFSe webserver in Nacional Standard
  *
  * @category  NFePHP
- * @package   NFePHP\Natal
+ * @package   NFePHP\NFSeNatal
  * @copyright NFePHP Copyright (c) 2008-2020
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
  * @author    Cleiton Perin <cperin20 at gmail dot com>
- * @link      http://github.com/nfephp-org/sped-nfse-nacional for the canonical source repository
+ * @link      http://github.com/nfephp-org/sped-nfse-natal for the canonical source repository
  */
 
 use NFePHP\Common\Certificate;
 use NFePHP\Common\DOMImproved as Dom;
-use NFePHP\Natal\Common\Soap\SoapCurl;
-use NFePHP\Natal\Common\Soap\SoapInterface;
-use NFePHP\Natal\RpsInterface;
+use NFePHP\NFSeNatal\Common\Soap\SoapCurl;
+use NFePHP\NFSeNatal\Common\Soap\SoapInterface;
+use NFePHP\NFSeNatal\RpsInterface;
 
 class Tools
 {

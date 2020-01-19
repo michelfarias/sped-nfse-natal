@@ -4,16 +4,16 @@ ini_set('display_errors', 'On');
 require_once '../bootstrap.php';
 
 use NFePHP\Common\Certificate;
-use NFePHP\Natal\Tools;
-use NFePHP\Natal\Common\Soap\SoapFake;
-use NFePHP\Natal\Common\FakePretty;
+use NFePHP\NFSeNatal\Tools;
+use NFePHP\NFSeNatal\Common\Soap\SoapFake;
+use NFePHP\NFSeNatal\Common\FakePretty;
 
 try {
 
     $config = [
         'cnpj' => '99999999000191',
         'im' => '1733160024',
-        'cmun' => '4314902',
+        'cmun' => '2408102',
         'razao' => 'Empresa Test Ltda',
         'tpamb' => 2
     ];
