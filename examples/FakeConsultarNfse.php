@@ -4,15 +4,15 @@ ini_set('display_errors', 'On');
 require_once '../bootstrap.php';
 
 use NFePHP\Common\Certificate;
-use NFePHP\Natal\Common\Soap\SoapFake;
-use NFePHP\Natal\Tools;
-use NFePHP\Natal\Common\FakePretty;
+use NFePHP\NFSeNatal\Common\Soap\SoapFake;
+use NFePHP\NFSeNatal\Tools;
+use NFePHP\NFSeNatal\Common\FakePretty;
 
 try {
 
     $config = [
-        'cnpj' => '15581977000117',
-        'im' => '1983539',
+        'cnpj' => '99999999000191',
+        'im' => '1733160024',
         'cmun' => '2408102',
         'razao' => 'Empresa Test Ltda',
         'tpamb' => 2
@@ -20,8 +20,8 @@ try {
 
     $configJson = json_encode($config);
 
-    $content = file_get_contents('C:\Users\Cleiton\Downloads\FREDERICK KEYSTER COSTA DE AZEVEDO15581977000117.pfx');
-    $password = '123456';
+    $content = file_get_contents('expired_certificate.pfx');
+    $password = 'associacao';
     $cert = Certificate::readPfx($content, $password);
     
     $soap = new SoapFake();

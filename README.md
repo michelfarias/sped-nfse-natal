@@ -1,14 +1,13 @@
 # sped-nfse-natal
 
-[![Join the chat at https://gitter.im/nfephp-org/sped-nfse-nacional](https://badges.gitter.im/nfephp-org/sped-nfse-nacional.svg)](https://gitter.im/nfephp-org/sped-nfse-nacional?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/nfephp-org/sped-nfse-natal](https://badges.gitter.im/nfephp-org/sped-nfse-natal.svg)](https://gitter.im/nfephp-org/sped-nfse-natal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Api para comunicação com webservices do Projeto NFSe Natal
+Api para comunicação com webservices do Provedor NFSe Natal
 
 ## Esta API esta sendo testada para Natal - RN
 
-*Utilize o chat do Gitter para iniciar discussões especificas sobre o desenvolvimento deste pacote.*
+*Utilize o [forum NFePHP](https://groups.google.com/forum/#!forum/nfephp) iniciar discussões especificas sobre o desenvolvimento deste pacote.*
 
-[![Chat][ico-gitter]][link-gitter]
 
 [![Latest Stable Version][ico-stable]][link-packagist]
 [![Build Status][ico-travis]][link-travis]
@@ -111,25 +110,25 @@ Cleiton Perin (owner and developer)
 Este pacote está diponibilizado sob LGPLv3 ou MIT License (MIT). Leia  [Arquivo de Licença](LICENSE.md) para maiores informações.
 
 
-[ico-stable]: https://poser.pugx.org/nfephp-org/sped-nfse-nacional/version
-[ico-stars]: https://img.shields.io/github/stars/nfephp-org/sped-nfse-nacional.svg?style=flat-square
-[ico-forks]: https://img.shields.io/github/forks/nfephp-org/sped-nfse-nacional.svg?style=flat-square
-[ico-issues]: https://img.shields.io/github/issues/nfephp-org/sped-nfse-nacional.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/nfephp-org/sped-nfse-nacional/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/nfephp-org/sped-nfse-nacional.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/nfephp-org/sped-nfse-nacional.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/nfephp-org/sped-nfse-nacional.svg?style=flat-square
-[ico-version]: https://img.shields.io/packagist/v/nfephp-org/sped-nfse-nacional.svg?style=flat-square
+[ico-stable]: https://poser.pugx.org/nfephp-org/sped-nfse-natal/version
+[ico-stars]: https://img.shields.io/github/stars/nfephp-org/sped-nfse-natal.svg?style=flat-square
+[ico-forks]: https://img.shields.io/github/forks/nfephp-org/sped-nfse-natal.svg?style=flat-square
+[ico-issues]: https://img.shields.io/github/issues/nfephp-org/sped-nfse-natal.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/nfephp-org/sped-nfse-natal/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/nfephp-org/sped-nfse-natal.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/nfephp-org/sped-nfse-natal.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/nfephp-org/sped-nfse-natal.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/nfephp-org/sped-nfse-natal.svg?style=flat-square
 [ico-license]: https://poser.pugx.org/nfephp-org/nfephp/license.svg?style=flat-square
 [ico-gitter]: https://img.shields.io/badge/GITTER-4%20users%20online-green.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/nfephp-org/sped-nfse-nacional
-[link-travis]: https://travis-ci.org/nfephp-org/sped-nfse-nacional
-[link-scrutinizer]: https://scrutinizer-ci.com/g/nfephp-org/sped-nfse-nacional/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/nfephp-org/sped-nfse-nacional
-[link-downloads]: https://packagist.org/packages/nfephp-org/sped-nfse-nacional
+[link-packagist]: https://packagist.org/packages/nfephp-org/sped-nfse-natal
+[link-travis]: https://travis-ci.org/nfephp-org/sped-nfse-natal
+[link-scrutinizer]: https://scrutinizer-ci.com/g/nfephp-org/sped-nfse-natal/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/nfephp-org/sped-nfse-natal
+[link-downloads]: https://packagist.org/packages/nfephp-org/sped-nfse-natal
 [link-author]: https://github.com/nfephp-org
-[link-issues]: https://github.com/nfephp-org/sped-nfse-nacional/issues
-[link-forks]: https://github.com/nfephp-org/sped-nfse-nacional/network
-[link-stars]: https://github.com/nfephp-org/sped-nfse-nacional/stargazers
-[link-gitter]: https://gitter.im/nfephp-org/sped-nfse-nacional?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+[link-issues]: https://github.com/nfephp-org/sped-nfse-natal/issues
+[link-forks]: https://github.com/nfephp-org/sped-nfse-natal/network
+[link-stars]: https://github.com/nfephp-org/sped-nfse-natal/stargazers
+[link-gitter]: https://gitter.im/nfephp-org/sped-nfse-natal?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge

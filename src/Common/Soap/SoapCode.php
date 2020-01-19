@@ -1,6 +1,6 @@
 <?php
 
-namespace NFePHP\Natal\Common\Soap;
+namespace NFePHP\NFSeNatal\Common\Soap;
 
 /**
  * SoapCode return a description os HTTP Codes returned from server
@@ -9,13 +9,13 @@ namespace NFePHP\Natal\Common\Soap;
  * The codes and their descriptions are stored in a json file in the same folder
  *
  * @category  NFePHP
- * @package   NFePHP\Natal
+ * @package   NFePHP\NFSeNatal
  * @copyright NFePHP Copyright (c) 2016
  * @license   http://www.gnu.org/licenses/lgpl.txt LGPLv3+
  * @license   https://opensource.org/licenses/MIT MIT
  * @license   http://www.gnu.org/licenses/gpl.txt GPLv3+
  * @author    Roberto L. Machado <linux.rlm at gmail dot com>
- * @link      http://github.com/nfephp-org/sped-nfse-nacional for the canonical source repository
+ * @link      http://github.com/nfephp-org/sped-nfse-natal for the canonical source repository
  */
 
 class SoapCode
