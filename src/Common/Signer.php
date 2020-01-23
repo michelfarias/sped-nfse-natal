@@ -109,7 +109,7 @@ class Signer
         $nsDigestMethod = 'http://www.w3.org/2000/09/xmldsig#sha1';
         $digestAlgorithm = 'sha1';
         $nsTransformMethod1 ='http://www.w3.org/2000/09/xmldsig#enveloped-signature';
-        //$nsTransformMethod2 = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315';
+        $nsTransformMethod2 = 'http://www.w3.org/TR/2001/REC-xml-c14n-20010315';
         $idSigned = trim($node->getAttribute($mark));
         $digestValue = self::makeDigest($node, $digestAlgorithm, $canonical);
         $signatureNode = $dom->createElementNS($nsDSIG, 'Signature');
@@ -135,9 +135,9 @@ class Signer
         $transfNode1 = $dom->createElement('Transform');
         $transformsNode->appendChild($transfNode1);
         $transfNode1->setAttribute('Algorithm', $nsTransformMethod1);
-        //$transfNode2 = $dom->createElement('Transform');
-        //$transformsNode->appendChild($transfNode2);
-        //$transfNode2->setAttribute('Algorithm', $nsTransformMethod2);
+        $transfNode2 = $dom->createElement('Transform');
+        $transformsNode->appendChild($transfNode2);
+        $transfNode2->setAttribute('Algorithm', $nsTransformMethod2);
         $digestMethodNode = $dom->createElement('DigestMethod');
         $referenceNode->appendChild($digestMethodNode);
         $digestMethodNode->setAttribute('Algorithm', $nsDigestMethod);

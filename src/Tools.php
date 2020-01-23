@@ -45,8 +45,9 @@ class Tools extends BaseTools
     public function cancelarNfse($numero, $codigo = self::ERRO_EMISSAO)
     {
         $operation = 'CancelarNfse';
-        $pedido = "<Pedido>"
-            . "<InfPedidoCancelamento>"
+        $pedido = "<CancelarNfseEnvio xmlns=\"http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd\">"
+            . "<Pedido>"
+            . "<InfPedidoCancelamento Id='$numero'>"
             . "<IdentificacaoNfse>"
             . "<Numero>$numero</Numero>"
             . "<Cnpj>" . $this->config->cnpj . "</Cnpj>"
@@ -55,16 +56,12 @@ class Tools extends BaseTools
             . "</IdentificacaoNfse>"
             . "<CodigoCancelamento>$codigo</CodigoCancelamento>"
             . "</InfPedidoCancelamento>"
-            . "</Pedido>";
-
-        $signed = $this->sign($pedido, 'InfPedidoCancelamento', '');
-        //$signed = Signer::sign($this->certificate, $pedido, 'InfPedidoCancelamento', '', OPENSSL_ALGO_SHA1, [true, false, null, null], 'Pedido');
-        $content = "<CancelarNfseEnvio xmlns=\"http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd\">"
-            . $signed
+            . "</Pedido>"
             . "</CancelarNfseEnvio>";
+
+        $content = Signer::sign($this->certificate, $pedido, 'InfPedidoCancelamento', 'Id', OPENSSL_ALGO_SHA1, [true, false, null, null], 'Pedido');
         $content = str_replace(['<?xml version="1.0"?>', '<?xml version="1.0" encoding="UTF-8"?>'], '', $content);
-        //header("Content-type: text/xml");echo $content;exit;
-        //Validator::isValid($content, $this->xsdpath);
+        Validator::isValid($content, $this->xsdpath);
         return $this->send($content, $operation);
     }
 

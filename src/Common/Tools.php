@@ -126,7 +126,6 @@ class Tools
             throw new \Exception("Não está registrada a URL para o ambiente "
                 . "de {$this->environment} desse municipio.");
         }
-        //$url = sprintf("%s%s.CLS", $url, $operation);
         $request = $this->createSoapRequest($message, $operation);
         $this->lastRequest = $request;
         if (empty($this->soap)) {
