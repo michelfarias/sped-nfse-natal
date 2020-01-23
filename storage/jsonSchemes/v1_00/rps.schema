@@ -142,8 +142,8 @@
                     "maxLength": 5
                 },
                 "codigotributacaomunicipio": {
-                    "required": true,
-                    "type": "string",
+                    "required": false,
+                    "type": ["string","null"],
                     "minLength": 1,
                     "maxLength": 20
                 },

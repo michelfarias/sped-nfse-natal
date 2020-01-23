@@ -45,7 +45,7 @@ class Tools extends BaseTools
     public function cancelarNfse($numero, $codigo = self::ERRO_EMISSAO)
     {
         $operation = 'CancelarNfse';
-        $pedido = "<Pedido xmlns=\"http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd\">"
+        $pedido = "<Pedido>"
             . "<InfPedidoCancelamento>"
             . "<IdentificacaoNfse>"
             . "<Numero>$numero</Numero>"
@@ -57,10 +57,13 @@ class Tools extends BaseTools
             . "</InfPedidoCancelamento>"
             . "</Pedido>";
 
-        $signed = $this->sign($pedido, 'InfPedidoCancelamento', 'Id');
-        $content = "<CancelarNfseEnvio>"
+        $signed = $this->sign($pedido, 'InfPedidoCancelamento', '');
+        //$signed = Signer::sign($this->certificate, $pedido, 'InfPedidoCancelamento', '', OPENSSL_ALGO_SHA1, [true, false, null, null], 'Pedido');
+        $content = "<CancelarNfseEnvio xmlns=\"http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd\">"
             . $signed
             . "</CancelarNfseEnvio>";
+        $content = str_replace(['<?xml version="1.0"?>', '<?xml version="1.0" encoding="UTF-8"?>'], '', $content);
+        //header("Content-type: text/xml");echo $content;exit;
         //Validator::isValid($content, $this->xsdpath);
         return $this->send($content, $operation);
     }
@@ -160,18 +163,10 @@ class Tools extends BaseTools
         }
         $content = '';
         foreach ($arps as $rps) {
-            //$xml = $this->putPrestadorInRps($rps);
-
-            $xml = '<Rps><InfRps Id="R14494"><IdentificacaoRps><Numero>14494</Numero><Serie>652</Serie><Tipo>1</Tipo></IdentificacaoRps><DataEmissao>2012-07-11T00:00:00</DataEmissao><NaturezaOperacao>1</NaturezaOperacao><OptanteSimplesNacional>2</OptanteSimplesNacional><IncentivadorCultural>2</IncentivadorCultural><Status>1</Status><Servico><Valores><ValorServicos>4</ValorServicos><ValorPis>0</ValorPis><ValorCofins>0</ValorCofins><ValorInss>0</ValorInss><ValorIr>0</ValorIr><ValorCsll>0</ValorCsll><IssRetido>2</IssRetido><ValorIss>0.08</ValorIss><ValorIssRetido>0</ValorIssRetido><OutrasRetencoes>0</OutrasRetencoes><BaseCalculo>4</BaseCalculo><Aliquota>0.02</Aliquota><ValorLiquidoNfse>4</ValorLiquidoNfse><DescontoIncondicionado>0</DescontoIncondicionado><DescontoCondicionado>0</DescontoCondicionado></Valores><ItemListaServico>10.05</ItemListaServico><CodigoCnae>6821801</CodigoCnae><Discriminacao>ASD</Discriminacao><CodigoMunicipio>3509502</CodigoMunicipio></Servico><Prestador><Cnpj>09267632000190</Cnpj><InscricaoMunicipal>1358286</InscricaoMunicipal></Prestador><Tomador><IdentificacaoTomador><CpfCnpj><Cpf>05135872922</Cpf></CpfCnpj></IdentificacaoTomador><RazaoSocial>Tomador CAMPINAS</RazaoSocial><Endereco><Endereco>endereco</Endereco><Numero>1</Numero><Complemento>complemento</Complemento><Bairro>bairro</Bairro><CodigoMunicipio>3509502</CodigoMunicipio><Uf>SP</Uf><Cep>89000000</Cep></Endereco><Contato><Telefone>04734515555</Telefone><Email>teste@123.com</Email></Contato></Tomador></InfRps></Rps>';
-            
-            //$xml = str_replace(['\n', '\r'], '', $xml);
-            //$xmlsigned = $this->sign($xml, 'InfRps', 'Id');
-            //header("Content-type: text/xml");
-            //echo $xmlsigned;
-            //exit;
+            $xml = $this->putPrestadorInRps($rps);
             $content .= $xml;
         }
-        $contentmsg = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><EnviarLoteRpsEnvio xmlns=\"http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd\">"
+        $contentmsg = "<EnviarLoteRpsEnvio xmlns=\"http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd\">"
             . "<LoteRps Id=\"L$lote\">"
             . "<NumeroLote>{$lote}</NumeroLote>"
             . "<Cnpj>{$this->config->cnpj}</Cnpj>"
@@ -182,14 +177,10 @@ class Tools extends BaseTools
             . "</ListaRps>"
             . "</LoteRps>"
             . "</EnviarLoteRpsEnvio>";
-        //$content = $this->sign($contentmsg, 'LoteRps', 'Id');
-        $contentmsg = Signer::sign($this->certificate, $contentmsg, 'InfRps', 'Id', OPENSSL_ALGO_SHA1, [true,false,null,null], 'Rps');
-        $contentsign = Signer::sign($this->certificate, $contentmsg, 'LoteRps', 'Id', OPENSSL_ALGO_SHA1, [true,false,null,null], 'EnviarLoteRpsEnvio');
-        file_put_contents('../local/xml_assinado.xml', $contentsign);
-        header("Content-type: text/xml");
-        echo $contentsign;
-        exit;
-        //Validator::isValid($content, $this->xsdpath);
+        $contentmsg = Signer::sign($this->certificate, $contentmsg, 'InfRps', 'Id', OPENSSL_ALGO_SHA1, [true, false, null, null], 'Rps');
+        $content = Signer::sign($this->certificate, $contentmsg, 'LoteRps', 'Id', OPENSSL_ALGO_SHA1, [true, false, null, null], 'EnviarLoteRpsEnvio');
+        $content = str_replace(['<?xml version="1.0"?>', '<?xml version="1.0" encoding="UTF-8"?>'], '', $content);
+        Validator::isValid($content, $this->xsdpath);
         return $this->send($content, $operation);
     }
 

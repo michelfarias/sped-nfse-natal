@@ -51,7 +51,7 @@ class Factory
         $this->dom->formatOutput = false;
         $this->rps = $this->dom->createElement('Rps');
     }
-    
+
     /**
      * Adicona dos dados de configuração
      * @param stdClass $config
@@ -297,8 +297,8 @@ class Factory
         $this->dom->addChild(
             $node,
             "CodigoTributacaoMunicipio",
-            $serv->codigotributacaomunicipio,
-            true
+            isset($serv->codigotributacaomunicipio) ? $serv->codigotributacaomunicipio : null,
+            false
         );
         $this->dom->addChild(
             $node,

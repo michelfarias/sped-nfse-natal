@@ -200,7 +200,7 @@ class Tools
         $node->appendChild($cdata);
 
         $node = $dom->getElementsByTagName('nfseDadosMsg')->item(0);
-        $cdata = $dom->createCDATASection("<?xml version=\"1.0\"?>$message");
+        $cdata = $dom->createCDATASection("$message");
         $node->appendChild($cdata);
         return $dom->saveXML($dom->documentElement);
     }
