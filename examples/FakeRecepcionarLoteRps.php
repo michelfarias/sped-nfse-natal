@@ -35,7 +35,7 @@ try {
     $std = new \stdClass();
     $std->version = '1.00';
     $std->IdentificacaoRps = new \stdClass();
-    $std->IdentificacaoRps->Numero = 1000; //limite 15 digitos
+    $std->IdentificacaoRps->Numero = 1002; //limite 15 digitos
     $std->IdentificacaoRps->Serie = '1'; //BH deve ser string numerico
     $std->IdentificacaoRps->Tipo = 1; //1 - RPS 2-Nota Fiscal Conjugada (Mista) 3-Cupom
     $std->DataEmissao = '2020-01-15T12:33:22';
@@ -46,14 +46,14 @@ try {
                                 // 5 – Exigibilidade suspensa por decisão judicial
                                 // 6 – Exigibilidade suspensa por procedimento administrativo
 
-    $std->RegimeEspecialTributacao = 3;    // 1 – Microempresa municipal
+    $std->RegimeEspecialTributacao = 5;    // 1 – Microempresa municipal
                                            // 2 - Estimativa
                                            // 3 – Sociedade de profissionais
                                            // 4 – Cooperativa
                                            // 5 – MEI – Simples Nacional
                                            // 6 – ME EPP – Simples Nacional
 
-    $std->OptanteSimplesNacional = 2; //1 - SIM 2 - Não
+    $std->OptanteSimplesNacional = 1; //1 - SIM 2 - Não
     $std->IncentivadorCultural = 1; //1 - SIM 2 - Não
     $std->Status = 1;  // 1 – Normal  2 – Cancelado
 
@@ -67,16 +67,16 @@ try {
     $std->Tomador->Endereco->Numero = '111';
     $std->Tomador->Endereco->Complemento = 'Sobre Loja';
     $std->Tomador->Endereco->Bairro = 'Centro';
-    $std->Tomador->Endereco->CodigoMunicipio = 2403251;
+    $std->Tomador->Endereco->CodigoMunicipio = 2408102;
     $std->Tomador->Endereco->Uf = 'RN';
     $std->Tomador->Endereco->Cep = 59200000;
 
     $std->Servico = new \stdClass();
     $std->Servico->ItemListaServico = '14.06';
     $std->Servico->CodigoCnae = '6821801';
-    $std->Servico->CodigoTributacaoMunicipio = '522310000';
+    $std->Servico->CodigoTributacaoMunicipio = null;
     $std->Servico->Discriminacao = 'Teste de RPS';
-    $std->Servico->CodigoMunicipio = 3509502;
+    $std->Servico->CodigoMunicipio = 2408102;
 
     $std->Servico->Valores = new \stdClass();
     $std->Servico->Valores->ValorServicos = 20.00;
@@ -87,12 +87,12 @@ try {
     $std->Servico->Valores->ValorIr = 0.00;
     $std->Servico->Valores->ValorCsll = 0.00;
     $std->Servico->Valores->IssRetido = 2;
-    $std->Servico->Valores->ValorIss = 0.08;
+    $std->Servico->Valores->ValorIss = 0.00;
     $std->Servico->Valores->ValorIssRetido = 0.00;
     $std->Servico->Valores->OutrasRetencoes = 0.00;
     $std->Servico->Valores->BaseCalculo = 20.00;
-    $std->Servico->Valores->Aliquota = 1.00;
-    $std->Servico->Valores->ValorLiquidoNfse = '0.20';
+    $std->Servico->Valores->Aliquota = null;
+    $std->Servico->Valores->ValorLiquidoNfse = 20.00;
     $std->Servico->Valores->DescontoIncondicionado = 0.00;
     $std->Servico->Valores->DescontoCondicionado = 0.00;
 
@@ -102,12 +102,10 @@ try {
 
     $arps[] = new Rps($std);
 
-    $lote = '123456';
+    $lote = time();
     $response = $tools->recepcionarLoteRps($arps, $lote);
 
-    //echo \NFePHP\NFSeNatal\Common\FakePretty::prettyPrint($response, '');
-    header("Content-type: text/plain");
-    echo $response;
+    echo \NFePHP\NFSeNatal\Common\FakePretty::prettyPrint($response, '');
 
 } catch (\Exception $e) {
     echo $e->getMessage();

@@ -30,7 +30,6 @@ try {
     $tools = new Tools($configJson, $cert);
     $tools->loadSoapClass($soap);
 
-    $id = 'C201800000000001';
     $numero = '000005904';
 
     $response = $tools->cancelarNfse($numero, $tools::ERRO_EMISSAO);

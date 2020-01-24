@@ -28,15 +28,13 @@ try {
     $soap->disableCertValidation(true);
     
     $tools = new Tools($configJson, $cert);
-    //$tools->loadSoapClass($soap);
+    $tools->loadSoapClass($soap);
 
     $protocolo = '40100270';
 
     $response = $tools->consultarLoteRps($protocolo);
 
-    //echo FakePretty::prettyPrint($response, '');
-    header("Content-type: text/plain");
-    echo $response;
+    echo FakePretty::prettyPrint($response, '');
  
 } catch (\Exception $e) {
     echo $e->getMessage();
