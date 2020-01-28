@@ -160,9 +160,14 @@ class Tools extends BaseTools
         }
         $content = '';
         foreach ($arps as $rps) {
-            $xml = $this->putPrestadorInRps($rps);
-            $content .= $xml;
+            $rps->config($this->config);
+            $content .= $rps->render();
         }
+        $content = str_replace(
+            ['<?xml version="1.0"?>', '<?xml version="1.0" encoding="UTF-8"?>', "\n", "\r"],
+            '',
+            $content
+        );
         $contentmsg = "<EnviarLoteRpsEnvio xmlns=\"http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd\">"
             . "<LoteRps Id=\"L$lote\">"
             . "<NumeroLote>{$lote}</NumeroLote>"
@@ -174,9 +179,29 @@ class Tools extends BaseTools
             . "</ListaRps>"
             . "</LoteRps>"
             . "</EnviarLoteRpsEnvio>";
-        $contentmsg = Signer::sign($this->certificate, $contentmsg, 'InfRps', 'Id', OPENSSL_ALGO_SHA1, [true, false, null, null], 'Rps');
-        $content = Signer::sign($this->certificate, $contentmsg, 'LoteRps', 'Id', OPENSSL_ALGO_SHA1, [true, false, null, null], 'EnviarLoteRpsEnvio');
-        $content = str_replace(['<?xml version="1.0"?>', '<?xml version="1.0" encoding="UTF-8"?>'], '', $content);
+        $content = Signer::sign(
+            $this->certificate,
+            $contentmsg,
+            'InfRps',
+            'Id',
+            OPENSSL_ALGO_SHA1,
+            [true, false, null, null],
+            'Rps'
+        );
+        $content = Signer::sign(
+            $this->certificate,
+            $content,
+            'LoteRps',
+            'Id',
+            OPENSSL_ALGO_SHA1,
+            [true, false, null, null],
+            'EnviarLoteRpsEnvio'
+        );
+        $content = str_replace(
+            ['<?xml version="1.0"?>', '<?xml version="1.0" encoding="UTF-8"?>'],
+            '',
+            $content
+        );
         Validator::isValid($content, $this->xsdpath);
         return $this->send($content, $operation);
     }

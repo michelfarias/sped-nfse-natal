@@ -461,20 +461,18 @@ class Factory
             return;
         }
         $node = $this->dom->createElement('Prestador');
-        $cpfcnpj = $this->dom->createElement('CpfCnpj');
         $this->dom->addChild(
-            $cpfcnpj,
+            $node,
             "Cnpj",
             !empty($this->config->cnpj) ? $this->config->cnpj : null,
             false
         );
         $this->dom->addChild(
-            $cpfcnpj,
+            $node,
             "Cpf",
             !empty($this->config->cpf) ? $this->config->cpf : null,
             false
         );
-        $node->appendChild($cpfcnpj);
         $this->dom->addChild(
             $node,
             "InscricaoMunicipal",
