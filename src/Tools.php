@@ -42,12 +42,15 @@ class Tools extends BaseTools
      * @param integer $codigo
      * @return string
      */
-    public function cancelarNfse($numero, $codigo = self::ERRO_EMISSAO)
+    public function cancelarNfse($numero, $codigo = self::ERRO_EMISSAO, $id = null)
     {
+        if (empty($id)) {
+            $id = $numero;
+        }
         $operation = 'CancelarNfse';
         $pedido = "<CancelarNfseEnvio xmlns=\"http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd\">"
             . "<Pedido>"
-            . "<InfPedidoCancelamento Id='$numero'>"
+            . "<InfPedidoCancelamento Id='$id'>"
             . "<IdentificacaoNfse>"
             . "<Numero>$numero</Numero>"
             . "<Cnpj>" . $this->config->cnpj . "</Cnpj>"
