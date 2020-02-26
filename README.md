@@ -1,13 +1,9 @@
 # sped-nfse-natal
 
-Api para comunicação com webservices do Provedor NFSe Natal
+Biblioteca para integração de NFSe Natal (RN)
 
-# EM DESENVOLVIMENTO NÃO USE. NÃO FUNCIONAL !!!
-
-## Esta API esta sendo testada para Natal - RN
 
 *Utilize o [forum NFePHP](https://groups.google.com/forum/#!forum/nfephp) iniciar discussões especificas sobre o desenvolvimento deste pacote.*
-
 
 [![Latest Stable Version][ico-stable]][link-packagist]
 [![Build Status][ico-travis]][link-travis]
