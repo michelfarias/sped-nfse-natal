@@ -17,6 +17,7 @@ namespace NFePHP\NFSeNatal\Common;
 
 use DOMNode;
 use NFePHP\Common\DOMImproved as Dom;
+use NFePHP\Common\Strings;
 use stdClass;
 
 class Factory
@@ -303,7 +304,7 @@ class Factory
         $this->dom->addChild(
             $node,
             "Discriminacao",
-            $serv->discriminacao,
+            Strings::toASCII($serv->discriminacao),
             true
         );
         $this->dom->addChild(
@@ -357,14 +358,14 @@ class Factory
         $this->dom->addChild(
             $node,
             "RazaoSocial",
-            $tom->razaosocial,
+            Strings::toASCII($tom->razaosocial),
             true
         );
         $endereco = $this->dom->createElement('Endereco');
         $this->dom->addChild(
             $endereco,
             "Endereco",
-            $end->endereco,
+            Strings::toASCII($end->endereco),
             true
         );
         $this->dom->addChild(
@@ -376,7 +377,7 @@ class Factory
         $this->dom->addChild(
             $endereco,
             "Complemento",
-            isset($end->complemento) ? $end->complemento : null,
+            isset($end->complemento) ? Strings::toASCII($end->complemento) : null,
             false
         );
         $this->dom->addChild(
@@ -421,7 +422,7 @@ class Factory
         $this->dom->addChild(
             $node,
             "RazaoSocial",
-            $int->razaosocial,
+            Strings::toASCII($int->razaosocial),
             true
         );
         $cpfcnpj = $this->dom->createElement('CpfCnpj');
