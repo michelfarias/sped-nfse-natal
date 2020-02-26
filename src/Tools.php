@@ -63,8 +63,20 @@ class Tools extends BaseTools
             . "</Pedido>"
             . "</CancelarNfseEnvio>";
 
-        $content = Signer::sign($this->certificate, $pedido, 'InfPedidoCancelamento', 'Id', OPENSSL_ALGO_SHA1, [true, false, null, null], 'Pedido');
-        $content = str_replace(['<?xml version="1.0"?>', '<?xml version="1.0" encoding="UTF-8"?>'], '', $content);
+        $content = Signer::sign(
+            $this->certificate,
+            $pedido,
+            'InfPedidoCancelamento',
+            'Id',
+            OPENSSL_ALGO_SHA1,
+            [true, false, null, null],
+            'Pedido'
+        );
+        $content = str_replace(
+            ['<?xml version="1.0"?>', '<?xml version="1.0" encoding="UTF-8"?>'],
+            '',
+            $content
+        );
         Validator::isValid($content, $this->xsdpath);
         return $this->send($content, $operation);
     }
@@ -209,5 +221,4 @@ class Tools extends BaseTools
         Validator::isValid($content, $this->xsdpath);
         return $this->send($content, $operation);
     }
-
 }
