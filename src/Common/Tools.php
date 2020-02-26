@@ -187,7 +187,13 @@ class Tools
             . "</soapenv:Body>"
             . "</soapenv:Envelope>";
 
-        $cabecalho = "<?xml version=\"1.0\"?><cabecalho xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" versao=\"{$this->wsobj->version}\" xmlns=\"http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd\"><versaoDados>1</versaoDados></cabecalho>";
+        $cabecalho = "<?xml version=\"1.0\"?>"
+            ."<cabecalho xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
+            . "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\ "
+            . "versao=\"{$this->wsobj->version}\" "
+            . "xmlns=\"http://www.abrasf.org.br/ABRASF/arquivos/nfse.xsd\">"
+            . "<versaoDados>{$this->wsobj->version}</versaoDados>"
+            . "</cabecalho>";
 
         $dom = new Dom('1.0', 'UTF-8');
         $dom->preserveWhiteSpace = false;
@@ -203,5 +209,4 @@ class Tools
         $node->appendChild($cdata);
         return $dom->saveXML($dom->documentElement);
     }
-
 }

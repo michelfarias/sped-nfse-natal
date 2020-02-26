@@ -153,8 +153,7 @@ abstract class SoapBase implements SoapInterface
     public function __construct(
         Certificate $certificate = null,
         LoggerInterface $logger = null
-    )
-    {
+    ) {
         $this->logger = $logger;
         $this->certificate = $this->checkCertValidity($certificate);
         $this->setTemporaryFolder(sys_get_temp_dir() . '/sped/');
@@ -348,8 +347,7 @@ abstract class SoapBase implements SoapInterface
         $namespaces,
         $soapver = SOAP_1_2,
         $header = null
-    )
-    {
+    ) {
         $prefix = $this->prefixes[$soapver];
         $envelope = "<$prefix:Envelope";
         foreach ($namespaces as $key => $value) {
